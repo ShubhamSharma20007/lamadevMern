@@ -1,0 +1,28 @@
+.slider{
+    height: calc(100vh - 80px);
+    position: relative;
+
+    .cont{
+     
+        transition: all ease 1s;
+        display: flex;
+        width: 300vw;
+       
+    }
+  
+   
+   
+    .icons{
+        position: absolute;
+        bottom: 30px;
+        display: flex;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .slider{
+        height: auto;
+    }
+}
+
