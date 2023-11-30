@@ -14,6 +14,7 @@ import './index.css'
 import Footer from './components/Footer/Footer.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Product from './pages/Product.jsx';
+import Productoverview from './pages/Productoverview.jsx';
 
 const Layout =()=>{
   return(
@@ -35,8 +36,12 @@ const router = createBrowserRouter([
         element:<Dashboard></Dashboard>
       },
       {
-        path:'/product/:id',
+        path:'/product',
         element:<Product></Product>
+      },
+      {
+        path:'/productoverview/:id',
+        element:<Productoverview></Productoverview>
       }
     ]
   }

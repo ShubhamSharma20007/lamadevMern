@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./categories.scss"
-import { useNavigate } from 'react-router-dom';
+
+
 import Productcart from '../Productcart/Productcart';
 const Categories = () => {
-  const navigate = useNavigate();;
-  const idSend =(id)=>{
-    navigate(`/product/${id}`)
-  }
+
   return (
     <div>
       <div className="categories-section m-0 w-full flex   ">
@@ -23,9 +21,11 @@ const Categories = () => {
             <button type="button" className="text-black font-semibold bg-white hover:opacity-80 p-2 rounded-sm   absolute left-1/2 top-1/2  md:block hidden  -translate-x-1/2 -translate-y-1/2">Men</button>
           </div>
         </div>
-        <div className="col w-1/4 md:w-1/3 border-solid border-2 border-white relative " onClick={()=>idSend(2)}>
+        <div className="col w-1/4 md:w-1/3 border-solid border-2 border-white relative ">
+        <Link to="/product">
           <img src="https://plus.unsplash.com/premium_photo-1700801992428-6db75bbffa7f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzMnx8fGVufDB8fHx8fA%3D%3D" className="cate-btn object-cover opacity-80  h-full w-full" alt="" />
           <button type="button" className="text-black font-semibold bg-white hover:opacity-80 p-2 rounded-sm   absolute left-1/2 top-1/2  md:block hidden  -translate-x-1/2 -translate-y-1/2" >Clothes</button>
+        </Link>
         </div>
         <div className=" col w-2/4 md:w-2/3  relative">
         <div className="flex">

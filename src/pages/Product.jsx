@@ -5,6 +5,8 @@ import Productcart from "../components/Productcart/Productcart";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
+
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -22,11 +24,24 @@ function classNames(...classes) {
 const Product = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
+  // change the range slider value
+  const [value, setValue] = useState(10000);
+ const [sort,setSort] = useState(null)
+
+
+ // send the id
+const navigate = useNavigate();
+ const sendId =(e)=>{
+  navigate(`/productoverview/${e}`)
+ }
+
+
+
   const products = [
     {
       id: 1,
       name: 'Basic Tee',
-      href: '#',
+      href: '/',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     //   imageSrcs :'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
@@ -34,9 +49,19 @@ const Product = () => {
       color: 'Black',
     },
     {
-      id: 1,
+      id: 2,
       name: 'Basic Tee',
-      href: '#',
+      href: '',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    //   imageSrcs :'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg',
+      imageAlt: "Front of men's Basic Tee in black.",
+      price: '$34',
+      color: 'Black',
+    },
+    {
+      id: 3,
+      name: 'Basic Tee',
+      href: '',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     //   imageSrcs :'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
@@ -44,19 +69,9 @@ const Product = () => {
       color: 'Black',
     },
     {
-      id: 1,
+      id: 4,
       name: 'Basic Tee',
-      href: '#',
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-    //   imageSrcs :'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg',
-      imageAlt: "Front of men's Basic Tee in black.",
-      price: '$35',
-      color: 'Black',
-    },
-    {
-      id: 1,
-      name: 'Basic Tee',
-      href: '#',
+      href: '',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
     //   imageSrcs :'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-08.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
@@ -141,18 +156,19 @@ const Product = () => {
                       id=""
                       min={0}
                       max={10000}
+                      onChange={(e)=>setValue(e.target.value)}
                       step={200}
                     />
-                    <span>10000</span>
+                    <span>{value}</span>
                   </div>
                   <div className="sort-container mt-3">
                     <h4 className="font-bold text-lg mt-3"> Filter</h4>
                     <div className="flex items-center gap-2 mb-2 mt-3">
-                      <input type="radio" name="btn1" id="btn1" />
+                      <input type="radio" name="btn1" id="btn1"  onChange={()=>setSort("asc")}/>
                       <label htmlFor="btn1">Ascending To Descending</label>
                     </div>
                     <div className="flex items-center gap-2 mt-3">
-                      <input type="radio" name="btn1" id="btn2" />
+                      <input type="radio" name="btn1" id="btn2" onChange={()=>setSort("des")} />
                       <label htmlFor="btn2">Descending To Ascending </label>
                     </div>
                   </div>
@@ -216,11 +232,7 @@ const Product = () => {
                     role="list"
                     className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
                   >
-                    {/* {subCategories.map((category) => (
-    <li key={category.name}>
-      <a href={category.href}>{category.name}</a>
-    </li>
-  ))} */}
+     
                     <div className="inputitem flex  items-center gap-4">
                       <input type="checkbox" name="catebtn" id="1" value={1} />
                       <label htmlFor="1">Shoes</label>
@@ -239,69 +251,34 @@ const Product = () => {
                       id=""
                       min={0}
                       max={10000}
+                      onChange={(e)=>setValue(e.target.value)}
+                      value={value}
                       step={200}
                     />
-                    <span>10000</span>
+                    <span>{value}</span>
                   </div>
                   <div className="sort-container mt-3">
                     <h4 className="font-bold text-lg mt-3"> Filter</h4>
                     <div className="flex items-center gap-2 mb-2 mt-3">
-                      <input type="radio" name="btn1" id="btn1" />
+                      <input type="radio" name="btn1" id="btn1" onChange={()=>setSort("asc")} />
                       <label htmlFor="btn1">Ascending To Descending</label>
                     </div>
                     <div className="flex items-center gap-2 mt-3">
-                      <input type="radio" name="btn1" id="btn2" />
+                      <input type="radio" name="btn1" id="btn2"  onChange={()=>setSort("des")} />
                       <label htmlFor="btn2">Descending To Ascending </label>
                     </div>
                   </div>
 
-                  {/* {filters.map((section) => (
-                  <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
-                    {({ open }) => (
-                      <>
-                        <h3 className="-my-3 flow-root">
-                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                            <span className="font-medium text-gray-900">{section.name}</span>
-                            <span className="ml-6 flex items-center">
-                              {open ? (
-                                <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                              ) : (
-                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                              )}
-                            </span>
-                          </Disclosure.Button>
-                        </h3>
-                        <Disclosure.Panel className="pt-6">
-                          <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
-                              <div key={option.value} className="flex items-center">
-                                <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
-                                  type="checkbox"
-                                  defaultChecked={option.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
-                                  {option.label}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </Disclosure>
-                ))} */}
                 </form>
 
                 {/* Product grid */}
+               
+
                 <div className="lg:col-span-3">
-                <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <div className="  w-full  ">
+                  <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZhc2hpb258ZW58MHwwfDB8fHww" className="max-h-60 w-full object-fill" alt="" />
+                </div>
+                <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" onClick={()=> sendId(2)}>
           {products.map((product) => (
             <div key={product.id} className="group relative ">
               <div className="aspect-h-1  aspect-w-1 z-0 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
@@ -310,11 +287,7 @@ const Product = () => {
                   alt={product.imageAlt}
                   className="image-one  h-full z-0 w-full object-cover object-center lg:h-full lg:w-full"
                 />
-                 {/* <img
-                  src={product.imageSrcs}
-                  alt={product.imageAlt}
-                  className="image-one h-full z-0 w-full object-cover object-center lg:h-full lg:w-full"
-                /> */}
+                
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
