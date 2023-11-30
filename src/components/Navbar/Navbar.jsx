@@ -7,7 +7,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import { useContext } from 'react';
+import Context from '../../context/MyContext';
 // shopping cart
 import { Dialog  } from '@headlessui/react'
 
@@ -15,7 +16,13 @@ import { Dialog  } from '@headlessui/react'
 
 const Navbar = () => {
 
-  const [open, setOpen] = useState(false)
+
+
+  // useContext
+  const context =  useContext(Context)
+  const{open,setOpen} = context
+
+
 
 
   const products = [
